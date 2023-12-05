@@ -1,6 +1,5 @@
 import regex as re
 
-
 def part_one():
     file = open("day1.txt", "r")
     result = []
@@ -15,7 +14,6 @@ def part_one():
         result.append(int(str(first) + str(last)))
     file.close()
     print(sum(result))
-
 
 def part_two():
     file = open("day1.txt", "r")
