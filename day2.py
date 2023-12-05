@@ -16,7 +16,7 @@ def part_one():
         numbers_g = re.findall(r"([1][4-9]|[2][0-9])\sg", line)
         numbers_b = re.findall(r"([1][5-9]|[2][0-9])\sb", line)
 
-        if numbers_r == [] and numbers_g == [] and numbers_b == []:
+        if numbers_r == [] and numbers_g == [] and numbers_b == []:  # If all games were valid, add game_id to counter
             counter += game_id
         game_id += 1
     file.close()
@@ -30,10 +30,14 @@ def part_two():
         line = file.readline()
         if not line:
             break
-        line = line.split(":")[1]
+        line = line.split(":")[1]  # Remove everything before :
+        # Three lists, by color for the cubes
         numbers = [re.findall(r"(\d+)\sr", line), re.findall(r"(\d+)\sg", line), re.findall(r"(\d+)\sb", line)]
+        # Converts str values to int in the lists
         numbers = list(map(lambda x: list(map(int, x)), numbers))
+        # Saves the largest of each color to list
         largest_nums = list(map(max, numbers))
+        # Product of the largest numbers added to list
         temp_product.append(reduce(mul, largest_nums, 1))
         """
         numbers_r = re.findall(r"(\d+)\sr", line)
